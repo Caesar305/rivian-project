@@ -8,6 +8,8 @@ The owner has authorized using online measurements now and readjusting after phy
 
 Open [the Blender reference scene](outputs/R1S_provisional_reference.blend) or inspect [the orthographic reference sheet](outputs/provisional_reference_views.svg). [Model notes](outputs/provisional_model_notes.md) explain exactly what the geometry represents and how to update it.
 
+The [interactive preview](outputs/r1s-working-preview.html) supports dimension changes, four views, drag rotation and a moving 22 × 14 × 9 inch carry-on reference. It is an inline HTML fragment with no network dependencies; Codex supplies its theme and controls styling. It checks containment in the published loading box, not clearance against vehicle surfaces. Edited values become class D local what-if values and do not alter the dimension register or Blender file. See [project status](PROJECT_STATUS.md) for tested behavior and the next work items.
+
 ## Start
 
 Read [the first capture request](outputs/START_HERE.md). It specifies twelve initial photographs and eight measurement groups to establish the next survey step.
