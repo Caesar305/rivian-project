@@ -1,0 +1,931 @@
+PROJECT: ENGINEERING-ACCURATE RIVIAN R1S INTERIOR DIGITAL TWIN
+PURPOSE: CUSTOM 6-PASSENGER EXECUTIVE INTERIOR DESIGN
+PRIMARY TOOL: BLENDER
+FINAL VISUALIZATION: UNREAL ENGINE 5
+ACCURACY TARGET: DIMENSIONALLY ACCURATE, NOT ARTISTIC GUESSWORK
+
+
+============================================================
+MISSION
+============================================================
+
+We are going to create our OWN dimensionally accurate 3D model of a
+2023 Rivian R1S.
+
+I own the physical vehicle and can provide additional photographs and
+physical measurements whenever necessary.
+
+DO NOT purchase or use a commercial 3D model.
+
+DO NOT generate an approximate artistic model and pretend it is accurate.
+
+The objective is to create a usable DIGITAL TWIN of the passenger cabin,
+particularly:
+
+- front seat reference positions
+- second-row compartment
+- second-row floor
+- rear door openings
+- B-pillars
+- C-pillars
+- third-row compartment
+- factory third-row seats
+- wheel wells
+- cargo compartment
+- interior side panels
+- roof/headliner
+- panoramic roof
+- hatch opening
+
+The most important region is everything from the FRONT SEATBACKS to the
+REAR HATCH.
+
+We are designing a custom executive second row, so dimensional accuracy
+inside this region is significantly more important than exterior body
+surface accuracy.
+
+
+============================================================
+ABSOLUTE RULE #1
+============================================================
+
+NEVER INVENT A DIMENSION.
+
+Every dimension in the model must be classified as one of:
+
+[A] VERIFIED OEM/PUBLISHED DIMENSION
+[B] PHYSICALLY MEASURED FROM MY VEHICLE
+[C] DERIVED FROM CALIBRATED PHOTOGRAPHY
+[D] ESTIMATED / UNVERIFIED
+
+Store this classification with the dimension.
+
+If information required for accurate geometry is unavailable:
+
+STOP.
+
+Tell me exactly what measurement or photograph you need.
+
+For example:
+
+"I need the distance between the inside surfaces of the second-row
+door panels at seat-cushion height."
+
+Then give me exact instructions for measuring it.
+
+Do NOT fill missing geometry with arbitrary dimensions.
+
+
+============================================================
+ABSOLUTE RULE #2 — BUILD A COORDINATE SYSTEM
+============================================================
+
+Use millimeters internally.
+
+Establish a vehicle coordinate system:
+
+X = longitudinal
+positive X toward FRONT of vehicle
+
+Y = lateral
+positive Y toward DRIVER SIDE
+
+Z = vertical
+positive Z upward
+
+Vehicle centerline:
+Y = 0
+
+Establish a repeatable Z=0 datum using an appropriate structural/floor
+reference.
+
+Do NOT simply use the visible carpet surface if different floor sections
+have different elevations.
+
+Every important measurement should ultimately be expressed as XYZ
+coordinates relative to this coordinate system.
+
+
+============================================================
+KNOWN R1S REFERENCE DIMENSIONS
+============================================================
+
+Use these as INITIAL calibration constraints.
+
+VEHICLE:
+
+Overall length:
+200.8 in
+5100 mm approximately
+
+Wheelbase:
+121.1 in
+3076 mm approximately
+
+Overall width:
+approximately 81.8–82.0 in
+approximately 2078–2083 mm
+
+Overall height:
+approximately 77.3 in
+1963 mm
+
+INTERIOR REFERENCE VALUES:
+
+Second-row hip room:
+approximately 54.2 in / 1377 mm
+
+Second-row shoulder room:
+approximately 58.9 in / 1496 mm
+
+Second-row headroom:
+approximately 39.7 in / 1008 mm
+
+Second-row nominal legroom:
+approximately 36.6 in / 930 mm
+
+Third-row hip room:
+approximately 42.8 in / 1087 mm
+
+Third-row shoulder room:
+approximately 51.1 in / 1298 mm
+
+Third-row headroom:
+approximately 38.6 in / 980 mm
+
+Third-row nominal legroom:
+approximately 32.8 in / 833 mm
+
+CARGO REFERENCES:
+
+Cargo length behind first row:
+approximately 84.7 in / 2151 mm
+
+Cargo length behind second row:
+approximately 57.8 in / 1468 mm
+
+Cargo length behind third row:
+approximately 21–21.8 in / 533–553 mm
+
+Width between rear wheel housings:
+approximately 51.1 in / 1298 mm
+
+Rear minimum-width reference visible in supplied measurement photograph:
+approximately 42.5 in / 1080 mm
+
+Cargo height reference:
+approximately 33.7 in / 856 mm
+
+
+IMPORTANT:
+
+Published "hip room", "legroom", "shoulder room", etc. are NOT necessarily
+direct surface-to-surface construction dimensions.
+
+Do NOT use SAE passenger-space specifications as if they automatically
+represent physical trim-panel dimensions.
+
+Use them as validation/reference measurements unless their measurement
+methodology is known.
+
+
+============================================================
+PHASE 0 — RESEARCH
+============================================================
+
+Before modeling anything, research all FREE publicly available dimensional
+information for the Rivian R1S.
+
+Search:
+
+- Rivian documentation
+- owner's guide
+- service information available legally/publicly
+- body dimensions
+- RivianForums
+- owner measurements
+- camping/platform measurements
+- cargo measurements
+- accessory installation diagrams
+- seat removal instructions
+- roof measurements
+- floor liner manufacturers
+- WeatherTech-style floor liner geometry
+- cargo liner dimensions
+- aftermarket storage products
+- third-row-delete projects
+- second-row seat removal projects
+- repair/body diagrams
+- collision repair measurements
+- salvage photographs
+- auction photographs
+- dimensioned drawings
+- technical specifications
+
+Also search for FREE:
+
+OBJ
+FBX
+STL
+STEP
+IGES
+GLTF
+GLB
+PLY
+point clouds
+LiDAR scans
+photogrammetry scans
+
+However:
+
+DO NOT trust any downloaded model automatically.
+
+Use external meshes only as reference geometry until validated against
+known measurements.
+
+Create a DIMENSION DATABASE.
+
+For every dimension record:
+
+NAME
+VALUE
+UNIT
+SOURCE
+SOURCE URL
+CONFIDENCE
+MEASUREMENT TYPE
+NOTES
+
+Confidence:
+
+5 = OEM or direct physical measurement
+4 = strong published/reference measurement
+3 = multiple independent owner measurements agree
+2 = photographically derived
+1 = approximate
+
+
+============================================================
+PHASE 1 — CREATE MEASUREMENT PLAN FOR MY ACTUAL R1S
+============================================================
+
+Because I own the vehicle, the physical vehicle is the ultimate source
+of truth.
+
+Create a measurement checklist BEFORE detailed modeling.
+
+We need cross-sections at several X positions.
+
+At each station measure LEFT and RIGHT interior surfaces at multiple
+heights.
+
+Example:
+
+Z = floor
+Z = 150 mm
+Z = 300 mm
+Z = 450 mm
+Z = 600 mm
+Z = 750 mm
+Z = 900 mm
+Z = shoulder/beltline
+Z = headliner
+
+Important X stations:
+
+A — rear of front seats
+B — front edge second-row cushion
+C — center second-row cushion
+D — rear edge second-row cushion
+E — rear door/C-pillar transition
+F — third-row footwell
+G — center third-row cushion
+H — rear edge third-row
+I — wheel-well center
+J — cargo area behind third row
+K — rear hatch opening
+
+Tell me exactly how to measure these.
+
+Create simple diagrams if necessary.
+
+Prioritize measurements affecting:
+
+1. executive-seat width
+2. center aisle
+3. third-row access
+4. seat rail travel
+5. recline
+6. footrest deployment
+7. third-row knee room
+8. cargo volume
+
+
+============================================================
+PHASE 2 — PHOTOGRAMMETRY
+============================================================
+
+I can provide hundreds of photographs of my R1S.
+
+Create a photogrammetry capture procedure.
+
+I can photograph:
+
+- empty second row
+- seats installed
+- seats folded
+- third row upright
+- third row folded
+- cargo compartment
+- doors open
+- doors closed
+- floor
+- ceiling
+- wheel wells
+- door panels
+
+Tell me how to capture photographs with:
+
+approximately 70–80% overlap.
+
+Avoid motion blur.
+
+Lock exposure/focus when useful.
+
+Include physical scale references.
+
+Place several AprilTags / ArUco markers / printed scale markers inside
+the cabin if useful.
+
+Include meter sticks / measuring tapes / known-length calibration bars.
+
+Take overlapping photographs from multiple elevations.
+
+Photograph difficult geometry separately.
+
+If my phone supports LiDAR, create instructions for capturing LiDAR as
+an additional source.
+
+DO NOT rely exclusively upon LiDAR for small details.
+
+Use:
+
+photogrammetry + physical measurements + LiDAR where available.
+
+
+============================================================
+PHASE 3 — BUILD RAW SCAN
+============================================================
+
+Use FREE software whenever possible.
+
+Preferred options may include:
+
+COLMAP
+Meshroom/AliceVision
+Blender
+CloudCompare
+
+Generate:
+
+point cloud
+dense point cloud
+mesh
+
+Import into Blender.
+
+Set Blender units:
+
+Metric
+millimeters
+
+Orient the scan to the vehicle coordinate system.
+
+Scale using MULTIPLE known physical measurements rather than a single
+measurement.
+
+Validate scale longitudinally, laterally and vertically.
+
+
+============================================================
+PHASE 4 — PARAMETRIC ENGINEERING MODEL
+============================================================
+
+DO NOT use the raw photogrammetry mesh as the final engineering model.
+
+Use it as reference.
+
+Create clean geometry representing:
+
+FLOOR
+DOOR PANELS
+DOOR OPENINGS
+B-PILLAR
+C-PILLAR
+D-PILLAR
+WHEEL WELLS
+SIDE TRIM
+HEADLINER
+ROOF
+THIRD-ROW SEATS
+FRONT SEATBACK ENVELOPES
+CARGO FLOOR
+REAR HATCH OPENING
+
+Use cross-sections derived from scan + measurements.
+
+Keep LEFT and RIGHT sides independent where appropriate.
+
+Do NOT assume perfect symmetry if physical measurements indicate
+otherwise.
+
+
+============================================================
+PHASE 5 — VALIDATION
+============================================================
+
+Before designing the executive interior, produce a VALIDATION REPORT.
+
+Check at least 30 known dimensions.
+
+For every dimension show:
+
+REAL MEASUREMENT
+MODEL MEASUREMENT
+DIFFERENCE IN MM
+PERCENT ERROR
+SOURCE
+CONFIDENCE
+
+Accuracy targets:
+
+Critical seating/floor geometry:
+±5 mm desirable
+
+Major interior surfaces:
+±10 mm desirable
+
+Exterior/reference geometry:
+±15 mm acceptable for visualization
+
+Any critical dimension exceeding tolerance must be corrected BEFORE
+executive-seat design begins.
+
+
+============================================================
+PHASE 6 — CREATE OCCUPANT ENVELOPES
+============================================================
+
+Create human mannequins:
+
+5th-percentile female
+50th-percentile adult
+95th-percentile male
+
+Also create representative child/passenger envelopes if useful.
+
+Use realistic anthropometric dimensions.
+
+We need to evaluate:
+
+head clearance
+shoulder clearance
+hip clearance
+knee clearance
+foot clearance
+entry/exit path
+
+
+============================================================
+PHASE 7 — EXECUTIVE R1S CONFIGURATION
+============================================================
+
+FINAL SEATING:
+
+ROW 1:
+2 factory Rivian seats
+
+ROW 2:
+2 custom executive captain's chairs
+
+ROW 3:
+2 factory Rivian seats
+
+TOTAL:
+6 passengers.
+
+The factory third row MUST remain foldable.
+
+
+============================================================
+EXECUTIVE SECOND ROW
+============================================================
+
+Each captain's chair should provide:
+
+power fore/aft
+power recline
+powered footrest
+massage
+heating
+ventilation
+power headrest
+individual armrests
+
+Desired width:
+approximately 21–23 inches
+
+BUT:
+
+DO NOT FORCE THIS WIDTH.
+
+Determine the maximum seat width from the REAL reconstructed cabin.
+
+
+============================================================
+THIRD-ROW ACCESS
+============================================================
+
+This is one of the MOST IMPORTANT engineering questions.
+
+Determine whether third-row access works via:
+
+OPTION A:
+center aisle
+
+OPTION B:
+passenger captain's chair sliding forward
+
+OPTION C:
+slide + tilt
+
+OPTION D:
+combination of center aisle + moving seat
+
+Simulate all four.
+
+Calculate:
+
+minimum passage width
+minimum passage height
+foot clearance
+hip clearance
+shoulder clearance
+
+Show the 50th-percentile adult entering.
+
+If necessary test 95th-percentile adult.
+
+
+============================================================
+EXECUTIVE MODE
+============================================================
+
+Second-row seats move rearward.
+
+Footrests extend.
+
+Backrests recline.
+
+Determine the ACTUAL maximum recline before collision.
+
+Collision-check:
+
+front seat
+front seat rails
+center console
+doors
+B-pillar
+C-pillar
+third-row seats
+floor
+opposite executive chair
+footrest
+
+
+============================================================
+SIX-PASSENGER MODE
+============================================================
+
+Move executive chairs forward enough to provide usable third-row
+legroom.
+
+Report:
+
+second-row legroom
+third-row legroom
+seat spacing
+cargo space
+
+
+============================================================
+THIRD-ROW ENTRY MODE
+============================================================
+
+Passenger-side captain's chair:
+
+1. footrest retracts
+2. backrest becomes upright
+3. chair slides forward
+4. chair tilts if necessary
+
+Calculate actual opening.
+
+Animate the sequence.
+
+
+============================================================
+CENTER COOLER
+============================================================
+
+Investigate a SHORT center console/cooler.
+
+Do NOT block the third-row passage.
+
+Starting envelope:
+
+WIDTH:
+200–250 mm
+
+LENGTH:
+400–600 mm
+
+HEIGHT:
+450–600 mm
+
+Possible features:
+
+10–15 L refrigerated compartment
+cupholders
+USB-C
+wireless charger
+touchscreen
+ambient lighting
+
+Determine dimensions from AVAILABLE SPACE.
+
+If a console significantly harms third-row access:
+
+DELETE IT.
+
+Third-row access takes priority.
+
+
+============================================================
+REAR SCREENS AND TABLES
+============================================================
+
+Install approximately 14-inch displays behind both front seats.
+
+Add aircraft-style folding tables.
+
+Collision-check:
+
+executive passenger knees
+seat movement
+recline
+entry path
+front-seat movement
+
+
+============================================================
+CARGO
+============================================================
+
+Measure actual cargo space behind row 3.
+
+Show:
+
+THIRD ROW UP
+THIRD ROW DOWN
+EXECUTIVE MODE
+SIX-PASSENGER MODE
+
+Create real-size luggage:
+
+Carry-on:
+22 x 14 x 9 inches
+
+Medium suitcase:
+26 x 18 x 11 inches
+
+Perform actual packing tests inside the 3D geometry.
+
+Do not visually shrink luggage.
+
+
+============================================================
+BLENDER MODEL ORGANIZATION
+============================================================
+
+Use named collections:
+
+00_REFERENCE
+01_SCAN
+02_BODY
+03_FLOOR
+04_TRIM
+05_FRONT_SEATS
+06_EXECUTIVE_SEATS
+07_THIRD_ROW
+08_SEAT_RAILS
+09_CONSOLE
+10_SCREENS
+11_TABLES
+12_HUMANS
+13_MEASUREMENTS
+14_COLLISION
+15_CAMERAS
+16_LIGHTING
+
+Keep raw scan/reference geometry separate from engineered surfaces.
+
+
+============================================================
+CREATE A DIMENSION CONTROL SYSTEM
+============================================================
+
+Use Blender Python where useful.
+
+Create a Python dictionary/JSON/CSV containing every verified dimension.
+
+Whenever possible drive geometry parametrically from these dimensions.
+
+Example conceptual structure:
+
+dimensions = {
+    "wheelbase": {
+        "value_mm": 3076,
+        "source_type": "OEM",
+        "confidence": 5
+    },
+    ...
+}
+
+Create automated validation functions that compare modeled geometry
+against the dimension database.
+
+Do NOT bury important dimensions manually inside random Blender objects.
+
+
+============================================================
+REQUIRED OUTPUT BEFORE PRETTY RENDERS
+============================================================
+
+Before doing ANY Unreal-quality rendering, give me:
+
+1. TOP-DOWN ORTHOGRAPHIC BLOCKOUT
+
+2. PASSENGER-SIDE ORTHOGRAPHIC CUTAWAY
+
+3. REAR ORTHOGRAPHIC CROSS-SECTION
+
+4. SECOND-ROW CROSS-SECTION
+
+5. THIRD-ROW CROSS-SECTION
+
+6. DIMENSION TABLE
+
+7. ERROR/VALIDATION TABLE
+
+8. EXECUTIVE-SEAT BOUNDING BOXES
+
+9. THIRD-ROW ENTRY PATH
+
+10. CARGO VOLUME
+
+Everything must be dimensioned in:
+
+MILLIMETERS
+and
+INCHES.
+
+
+============================================================
+FINAL RENDERING
+============================================================
+
+ONLY after I approve the geometry:
+
+Create the finished interior.
+
+STYLE:
+
+Factory Rivian aesthetic.
+
+Light gray / cream leather executive seats.
+
+Perforated leather.
+
+Subtle stitching.
+
+Charcoal/black secondary surfaces.
+
+Satin metal accents.
+
+Warm amber/white ambient lighting.
+
+Panoramic glass roof retained.
+
+Minimalist design.
+
+NO limousine aesthetic.
+
+NO giant LED strips.
+
+NO excessive diamond stitching.
+
+NO fake Maybach logos.
+
+It should look like:
+
+"Rivian secretly developed an R1S Executive prototype."
+
+
+============================================================
+UNREAL ENGINE 5
+============================================================
+
+Export the validated model into Unreal Engine 5.
+
+Use:
+
+Nanite where appropriate
+Lumen / ray-traced lighting
+PBR materials
+realistic automotive leather
+realistic glass
+realistic carpet
+realistic plastics
+satin metal
+proper physical scale
+
+Render:
+
+3840 x 2160
+16:9
+
+
+============================================================
+FINAL CAMERA SET
+============================================================
+
+1. Rear hatch looking forward
+2. Passenger rear door looking inward
+3. Driver rear door looking inward
+4. Front looking rearward
+5. Third row looking forward
+6. Top-down roof-off
+7. Passenger-side cutaway
+8. Executive/lounge mode
+9. Six-passenger mode
+10. Third-row entry mode
+11. Third-row cargo-up configuration
+12. Third-row folded configuration
+
+
+============================================================
+MOST IMPORTANT INSTRUCTION
+============================================================
+
+You are functioning as a CAD/measurement/visualization assistant,
+NOT an image generator.
+
+Never make the cabin larger because a chair doesn't fit.
+
+Never shrink a seat because it looks better.
+
+Never move a pillar.
+
+Never change the wheel wells.
+
+Never invent extra legroom.
+
+Never hide collisions.
+
+Never call an estimated dimension "exact."
+
+If we discover that my desired configuration cannot physically fit,
+tell me.
+
+Then optimize the design around the REAL available space.
+
+
+============================================================
+START NOW
+============================================================
+
+DO NOT START MODELING THE EXECUTIVE SEATS YET.
+
+First:
+
+1. Research all free dimensional data available for the 2023 Rivian R1S.
+2. Build the dimension/source database.
+3. Identify conflicting measurements.
+4. Determine which measurements are still missing.
+5. Give me a prioritized measurement checklist for my physical R1S.
+6. Give me a photogrammetry/LiDAR capture plan.
+7. Tell me exactly what photographs and measurements you want from me FIRST.
+
+We will not proceed to detailed modeling until the base R1S cabin
+geometry has been validated.

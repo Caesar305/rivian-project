@@ -1,0 +1,8 @@
+node_modules/
+work/
+__pycache__/
+*.pyc
+.DS_Store
+*.inspect.ndjson
+captures/raw/
+scans/raw/
