@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+<rect width="1600" height="1200" fill="#f8fafc"/>
+<style>text{font-family:Arial,sans-serif;fill:#172b3b}.small{font-size:18px}.label{font-size:21px}.head{font-size:25px;font-weight:bold}.box{fill:#e2eff8;stroke:#287ca7;stroke-width:3}.dim{stroke:#617687;stroke-width:1.5}</style>
+<text x="55" y="58" font-size="34" font-weight="bold">R1S — provisional online reference</text>
+<text x="55" y="91" class="label">Published comfortable loading box · rows 2 and 3 folded · 2022 media vehicle</text>
+<text x="55" y="122" class="small">No body datum, trim surfaces, seat locations or fit clearance established. Dimensions are source claims.</text>
+<text x="55" y="177" class="head">TOP ORTHOGRAPHIC</text>
+<rect x="55" y="245" width="822.96" height="431.8" class="box"/>
+<line x1="55" y1="227" x2="877.96" y2="227" class="dim"/>
+<line x1="55" y1="219" x2="55" y2="235" class="dim"/>
+<line x1="877.96" y1="219" x2="877.96" y2="235" class="dim"/>
+<text x="55" y="213" class="small">2057.4 mm / 81.00 in [A; D056]</text>
+<text x="55" y="705.8" class="small">Width: 1079.5 mm / 42.50 in [A; D055]</text>
+<text x="55" y="730.8" class="small">Rear  X=0                                               +X toward front →</text>
+<text x="55" y="755.8" class="small">Upper edge: +Y driver side. Centering is illustrative [D].</text>
+<text x="985" y="177" class="head">REAR ORTHOGRAPHIC</text>
+<rect x="985" y="245" width="431.8" height="284.48" class="box"/>
+<line x1="985" y1="227" x2="1416.8" y2="227" class="dim"/>
+<line x1="985" y1="219" x2="985" y2="235" class="dim"/>
+<line x1="1416.8" y1="219" x2="1416.8" y2="235" class="dim"/>
+<text x="985" y="213" class="small">1079.5 mm / 42.50 in [A; D055]</text>
+<text x="985" y="558.48" class="small">Height: 711.2 mm / 28.00 in [A; D057]</text>
+<text x="985" y="585.48" class="small">+Z up; +Y driver side is left</text>
+<text x="55" y="815" class="head">PASSENGER-SIDE ORTHOGRAPHIC</text>
+<rect x="55" y="880" width="576.0720000000001" height="199.13600000000002" class="box"/>
+<line x1="55" y1="863" x2="631.0720000000001" y2="863" class="dim"/>
+<line x1="55" y1="855" x2="55" y2="871" class="dim"/>
+<line x1="631.0720000000001" y1="855" x2="631.0720000000001" y2="871" class="dim"/>
+<text x="55" y="849" class="small">2057.4 mm / 81.00 in [A; D056]</text>
+<text x="55" y="1121" class="small">Each view preserves proportions; the side view uses a smaller drawing scale. No trim/roof profile is implied.</text>
+<text x="985" y="645" class="head">CARGO-LENGTH CONFLICT</text>
+<text x="985" y="681" class="label">Behind row 2:</text>
+<text x="985" y="712" class="small">1315.0 mm / 51.77 in [D; D030]</text>
+<text x="985" y="742" class="small">1465.6 mm / 57.70 in [D; D058]</text>
+<text x="985" y="778" class="small">Difference: 150.58 mm / 5.93 in</text>
+<text x="985" y="815" class="small">Different source claims; configuration</text>
+<text x="985" y="841" class="small">and endpoints remain unresolved.</text>
+<text x="985" y="885" class="small">Update via source records and parameter links.</text>
+<text x="985" y="918" class="small">No clearance or cargo-volume result claimed.</text>
+<text x="55" y="1160" class="small">Source: Andrew P. Collins / The Drive (S05). Full provenance and alternate reference spans are embedded in the .blend.</text>
+</svg>

@@ -104,7 +104,8 @@ first=[]
 for i,name in enumerate(first_names,1):
     first.append(dict(id=f'F{i:02}',name=name,reading_1_mm=None,reading_2_mm=None,reading_3_mm=None,second_span_mm=None,height_reference=None,configuration=None,endpoint_photo_ids=None,tool=None,notes=None))
 
-db=dict(schema_version='1.0',project='2023 Rivian R1S cabin digital twin',research_date=DATE,phase='Research and acquisition planning; no geometry',
+db=dict(schema_version='1.0',project='2023 Rivian R1S cabin digital twin',research_date=DATE,phase='Research and provisional online-reference modeling; no validated cabin',
+ workflow_revision=dict(provisional_online_reference_authorized=True,owner_instruction='Use online measurements now and readjust after physical measurement.',geometry_authorized_field_meaning='Accepted target-cabin engineering geometry; provisional reference objects are controlled separately by reference_model_config.json'),
  classification_legend={'A':'Verified OEM/published claim within stated scope','B':'Measured on owner vehicle','C':'Derived from calibrated photography','D':'Estimated/unverified/unresolved'},
  confidence_legend={'5':'OEM or direct physical measurement','4':'Strong published/reference measurement','3':'Independent owner measurements agree','2':'Photographically derived','1':'Approximate/unverified'},
  coordinate_system=dict(length_unit='mm',positive_x='forward',positive_y='driver side',positive_z='up',origin=None,datum_plane=None,datum_status='PENDING_OWNER_PHOTOS',transform=None),

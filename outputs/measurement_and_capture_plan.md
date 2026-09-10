@@ -1,6 +1,6 @@
 # R1S measurement and capture procedure
 
-Target: owner's 2023 vehicle. Revision 0 — datum features await photographs.
+Target: owner's 2023 vehicle. Revision 1 — datum features await photographs. The owner has authorized provisional online-reference modeling while physical data is collected.
 
 **Begin with `START_HERE.md`.** The procedures below specify how to collect data; suggested target sizes, sampling intervals and photo counts are acquisition settings, not invented vehicle dimensions.
 
@@ -146,7 +146,7 @@ Register with multiple measured point pairs distributed in three dimensions. [Cl
 
 Blender convention for this project: numeric coordinates in mm, `unit_system = 'METRIC'`, `scale_length = 0.001`, `length_unit = 'MILLIMETERS'`, so 1000 coordinate units represent 1000 mm. These unit settings do **not** rescale imported vertices. Convert each imported dataset explicitly from its recorded units and verify several known spans. [Blender unit behavior](https://docs.blender.org/manual/id/4.5/scene_layout/scene/properties.html).
 
-Use the requested collections 00_REFERENCE through 16_LIGHTING, retaining all names in the brief. Raw scans stay in 01_SCAN. Future engineered objects must reference source dimension IDs and accepted station/point records. Unsupported patches remain absent or separately labeled D; they cannot enter a critical collision boundary unnoticed. No Blender file is created in this initial handoff because there is no valid geometry to place in it.
+Use the requested collections 00_REFERENCE through 16_LIGHTING, retaining all names in the brief. Raw scans stay in 01_SCAN. Future engineered objects must reference source dimension IDs and accepted station/point records. Unsupported patches remain absent or separately labeled D; they cannot enter a critical collision boundary unnoticed. A provisional Blender reference file now represents the published loading box and isolated scalar references; it does not yet supply the engineered cabin surfaces.
 
 ## 8. Validation gate
 

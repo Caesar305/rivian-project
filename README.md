@@ -2,7 +2,11 @@
 
 A measurement-led reconstruction for a six-passenger executive interior, using the owner's physical vehicle as the final dimensional authority.
 
-**Current state:** public-source research and acquisition planning. No cabin geometry, executive seats, scan, fit result or render has been created. No commercial vehicle model is used.
+**Current state:** provisional online-reference modeling and acquisition planning. A source-driven Blender loading-envelope model now exists. Cabin surfaces, executive seats, scans and fit results remain pending. No commercial vehicle model is used.
+
+The owner has authorized using online measurements now and readjusting after physical measurement. This supersedes the original blanket pause on all modeling. Online data can drive explicitly provisional references; physical cabin validation and the approval requirement for finished renders still apply.
+
+Open [the Blender reference scene](outputs/R1S_provisional_reference.blend) or inspect [the orthographic reference sheet](outputs/provisional_reference_views.svg). [Model notes](outputs/provisional_model_notes.md) explain exactly what the geometry represents and how to update it.
 
 ## Start
 
@@ -20,7 +24,7 @@ The workbook holds a reference register, not an accepted engineering dataset. A 
 
 ## Project rules
 
-Use millimeters and X forward, Y driver-side, Z up. Select repeatable hard datum points from actual vehicle photographs and measurements. Preserve left/right differences and raw observations. Classify every future geometry-driving dimension as A, B, C or D with source and uncertainty. Stop for missing critical geometry. Validate the base cabin before executive-seat design. Finished rendering requires the owner's geometry approval.
+Use millimeters and X forward, Y driver-side, Z up. Select repeatable hard datum points from actual vehicle photographs and measurements. Preserve left/right differences and raw observations. Classify every future geometry-driving dimension as A, B, C or D with source and uncertainty. Continue provisional source-based work while critical geometry is missing, but do not claim fit or validation from those references. Validate the base cabin before executive-seat design. Finished rendering requires the owner's geometry approval.
 
 ## Structure
 
@@ -34,4 +38,4 @@ Run `node scripts/build_workbook.mjs` in an environment providing `@oai/artifact
 
 The initial builder intentionally produces blank acquisition/validation sheets; it is not a round-trip editor for subsequently completed field workbooks. Preserve filled workbooks as separate versioned acquisition records.
 
-No modeling software or paid service has been installed as part of this handoff.
+Run `blender --background --python scripts/build_reference_model.py` to rebuild the provisional scene and technical drawing from the dimension database and `outputs/reference_model_config.json`. The script checks dimensional extents and parameter propagation. Blender 4.5.7 was downloaded to local ignored `work/` for the initial build; no paid service is used.

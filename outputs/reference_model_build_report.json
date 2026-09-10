@@ -1,0 +1,20 @@
+{
+  "status": "PROVISIONAL_ONLINE_REFERENCE",
+  "dimensions_mm": {
+    "length": 2057.4,
+    "width": 1079.5,
+    "height": 711.2
+  },
+  "source_dimension_ids": [
+    "D056",
+    "D055",
+    "D057"
+  ],
+  "parameter_update_test": "PASS: temporary +100 mm change propagated and was restored",
+  "geometry_validation": "NOT PERFORMED \u2014 no owner measurements",
+  "fit_clearance_enabled": false,
+  "generated_files": [
+    "R1S_provisional_reference.blend",
+    "provisional_reference_views.svg"
+  ]
+}

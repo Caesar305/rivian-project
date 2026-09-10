@@ -2,7 +2,12 @@
   "schema_version": "1.0",
   "project": "2023 Rivian R1S cabin digital twin",
   "research_date": "2026-09-09",
-  "phase": "Research and acquisition planning; no geometry",
+  "phase": "Research and provisional online-reference modeling; no validated cabin",
+  "workflow_revision": {
+    "provisional_online_reference_authorized": true,
+    "owner_instruction": "Use online measurements now and readjust after physical measurement.",
+    "geometry_authorized_field_meaning": "Accepted target-cabin engineering geometry; provisional reference objects are controlled separately by reference_model_config.json"
+  },
   "classification_legend": {
     "A": "Verified OEM/published claim within stated scope",
     "B": "Measured on owner vehicle",

@@ -1,0 +1,24 @@
+{
+  "revision": 1,
+  "status": "PROVISIONAL_ONLINE_REFERENCE",
+  "owner_authorization": "Use online measurements now and readjust after physical measurement.",
+  "validated_cabin": false,
+  "fit_clearance_enabled": false,
+  "coordinate_convention": {"unit": "mm", "x": "forward", "y": "driver side", "z": "up"},
+  "placement": {
+    "classification": "D",
+    "definition": "Display origin at rear-center-bottom of the published loading box. This is not the vehicle structural datum.",
+    "vehicle_datum_transform": null
+  },
+  "loading_box": {
+    "length_id": "D056",
+    "width_id": "D055",
+    "height_id": "D057",
+    "source_configuration": "Rows 2 and 3 folded on the author's 2022 media vehicle",
+    "meaning": "Published comfortable rectangular loading envelope; not cabin trim, floor, roof or a maximum inscribed box."
+  },
+  "cargo_length_reference_ids": ["D029", "D030", "D031", "D058"],
+  "passenger_space_reference_ids": ["D041", "D042", "D043", "D044", "D045", "D046", "D047", "D048", "D049", "D050", "D051", "D052", "D053", "D054"],
+  "unknown_geometry": ["structural datum", "actual floor", "closed door trim", "door openings", "pillars", "wheel-house surfaces", "headliner", "glass roof", "front seats", "third-row seats", "seat rail attachments", "hatch inner surface"],
+  "update_rule": "Source records are immutable claims. Add owner measurements as new B records, then explicitly map equivalent endpoints/configurations. Never replace a comfortable-box measurement with a trim distance merely because both are called width."
+}

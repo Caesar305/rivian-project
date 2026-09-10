@@ -2,7 +2,7 @@
 
 2023 vehicle · Phase 0/1 handoff · 9 September 2026
 
-**The cabin is not modeled or validated yet.** No seat width, aisle clearance, recline limit or cargo volume has been inferred from published passenger-space figures. No commercial vehicle model was acquired or used.
+**A provisional online-reference Blender scene now exists; the cabin is not validated.** The owner authorized starting with online dimensions and readjusting later. See `provisional_model_notes.md`. No seat width, aisle clearance, recline limit or cargo volume has been inferred from published passenger-space figures. No commercial vehicle model was acquired or used.
 
 The research register distinguishes published claims from dimensions that can actually constrain your cabin. Read `research_findings.md` for conflicts and sources, `measurement_and_capture_plan.md` for the full procedure, and use `R1S_dimension_register.xlsx` for the dimension register, measurement sheets and future validation. `dimension_database.json` preserves machine-readable provenance.
 
