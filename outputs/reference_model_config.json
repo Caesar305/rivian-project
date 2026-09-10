@@ -15,7 +15,15 @@
     "width_id": "D055",
     "height_id": "D057",
     "source_configuration": "Rows 2 and 3 folded on the author's 2022 media vehicle",
-    "meaning": "Published comfortable rectangular loading envelope; not cabin trim, floor, roof or a maximum inscribed box."
+    "meaning": "Published comfortable rectangular loading envelope; not cabin trim, floor, roof or a maximum inscribed box.",
+    "source_contract": {
+      "source_id": "S05",
+      "measurement_type": "published_physical_envelope",
+      "model_year_scope": "2022 media vehicle",
+      "configuration": "Rows 2 and 3 folded",
+      "endpoint_definition": "Comfortable rectangular loading envelope; not trim surface distance"
+    },
+    "axis_names": {"length": "Comfortable box length", "width": "Comfortable box width", "height": "Comfortable box height"}
   },
   "cargo_length_reference_ids": ["D029", "D030", "D031", "D058"],
   "passenger_space_reference_ids": ["D041", "D042", "D043", "D044", "D045", "D046", "D047", "D048", "D049", "D050", "D051", "D052", "D053", "D054"],

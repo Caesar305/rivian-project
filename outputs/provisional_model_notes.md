@@ -15,9 +15,11 @@ The three views in `provisional_reference_views.svg` show this same box, with mm
 ## Updating dimensions
 
 1. In Blender, select `SOURCE_PARAMETERS_mm` in `13_MEASUREMENTS` and inspect its custom properties. The visible box has drivers for length, width and height. Each property has a source ID and provenance description. A local edit updates the box immediately but is an unverified override until recorded.
-2. For a persistent update, add your measurement as a new class B source record with photos, endpoints, configuration and uncertainty. Preserve the original online claim.
+2. For a persistent update, import a separate owner capture with photos, endpoints, configuration and uncertainty using `scripts/import_measurements.py`. A physical measurement is claimed B but remains effectively D pending review. Use the measurement mapping review to propose its owner-cabin parameter. Preserve the original online claim.
 3. Update `reference_model_config.json` only when the new measurement has equivalent meaning. A physical trim width cannot replace a comfortable-box width without changing the object's definition. The eventual true cabin surfaces will be separate geometry driven by measured stations and scans.
-4. Run `blender --background --python scripts/build_reference_model.py`. It generates the scene, drawing and build report. This is a deterministic reference-scene builder: save manual Blender edits under a separate filename before rebuilding, because it recreates the reference scene.
+4. Run `python3 scripts/build_preview.py` and `blender --background --python-exit-code 1 --python scripts/build_reference_model.py`. Both resolve the same checked source mapping. They generate the preview, scene, drawing and build report. This is a deterministic reference-scene builder: save manual Blender edits under a separate filename before rebuilding, because it recreates the reference scene.
+
+The preview template contains no independent loading-box dimensions. Generated defaults, source table and classification come from the source register. The Blender scene and its build report store the same source fingerprint as the preview, including definitions and provenance. `scripts/verify_reference_model.py`, run in Blender with the saved scene open, checks the actual saved dimensions and source parameters along with the report and preview. These are rebuild consistency checks, not physical calibration or automatic acceptance of owner measurements.
 
 The build test checks the published box dimensions, temporarily changes length by 100 mm, confirms propagation, and restores the original. This is software verification, not vehicle-dimensional validation. The build report explicitly separates those states.
 

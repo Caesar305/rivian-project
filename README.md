@@ -44,4 +44,8 @@ Run `node scripts/build_workbook.mjs` in an environment providing `@oai/artifact
 
 The initial builder intentionally produces blank acquisition/validation sheets; it is not a round-trip editor for subsequently completed field workbooks. Preserve filled workbooks as separate versioned acquisition records.
 
-Run `blender --background --python scripts/build_reference_model.py` to rebuild the provisional scene and technical drawing from the dimension database and `outputs/reference_model_config.json`. The script checks dimensional extents and parameter propagation. Blender 4.5.7 was downloaded to local ignored `work/` for the initial build; no paid service is used.
+Run `python3 scripts/build_preview.py` and `blender --background --python-exit-code 1 --python scripts/build_reference_model.py` to rebuild the preview, scene and technical drawing. Both use `scripts/reference_sources.py` to resolve the dimension database and `outputs/reference_model_config.json`. The shared reader checks unit conversions, finite positive source values, axis roles and the loading-box source definition. Preserve the source claims; changing a measurement definition requires a deliberate mapping review, not just a new number.
+
+Edit the preview layout in `templates/r1s-working-preview.html`, then regenerate its output. Run `python3 scripts/build_preview.py --check` to detect stale preview content. To verify the saved model against the current source data, report and preview, run `blender --background outputs/R1S_provisional_reference.blend --python-exit-code 1 --python scripts/verify_reference_model.py`. Local Blender edits are not propagated back into source records or the preview.
+
+Run `python3 -m unittest discover -s tests -v` for intake, mapping and source-binding regression tests. The Blender builder separately checks dimensional extents and parameter propagation. Blender 4.5.7 was downloaded to local ignored `work/` for the initial build; no paid service is used.

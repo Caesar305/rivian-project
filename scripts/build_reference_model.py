@@ -5,6 +5,7 @@ Only source dimensions drive geometric lengths. Label sizes/camera offsets are
 presentation settings and excluded from physical measurement and collision use.
 """
 import json
+import sys
 from pathlib import Path
 from itertools import product
 from xml.sax.saxutils import escape
@@ -12,10 +13,11 @@ import bpy
 from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'scripts'))
+from reference_sources import load
 OUT = ROOT / 'outputs'
-DB = json.loads((OUT / 'dimension_database.json').read_text())
-CFG = json.loads((OUT / 'reference_model_config.json').read_text())
-D = {d['id']: d for d in DB['dimensions']}
+REFERENCE = load(ROOT)
+DB, CFG, D = (REFERENCE[k] for k in ('database', 'config', 'dimensions'))
 
 def mm(id):
     value = D[id]['value_mm']
@@ -32,6 +34,7 @@ scene.unit_settings.system = 'METRIC'
 scene.unit_settings.scale_length = 0.001
 scene.unit_settings.length_unit = 'MILLIMETERS'
 scene['status'] = CFG['status']
+scene['source_fingerprint'] = REFERENCE['source_fingerprint']
 scene['validated_cabin'] = False
 scene['fit_clearance_enabled'] = False
 scene['datum'] = CFG['placement']['definition']
@@ -186,7 +189,7 @@ text(985,918,'No clearance or cargo-volume result claimed.','small')
 text(55,1160,'Source: Andrew P. Collins / The Drive (S05). Full provenance and alternate reference spans are embedded in the .blend.','small')
 svg.append('</svg>')
 (OUT/'provisional_reference_views.svg').write_text('\n'.join(svg))
-manifest = dict(status=CFG['status'],dimensions_mm={'length':L,'width':W,'height':H},source_dimension_ids=[LID,WID,HID],
+manifest = dict(status=CFG['status'],source_fingerprint=REFERENCE['source_fingerprint'],dimensions_mm={'length':L,'width':W,'height':H},source_dimension_ids=[LID,WID,HID],
                parameter_update_test='PASS: temporary +100 mm change propagated and was restored',
                geometry_validation='NOT PERFORMED — no owner measurements',fit_clearance_enabled=False,
                generated_files=['R1S_provisional_reference.blend','provisional_reference_views.svg'])
