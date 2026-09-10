@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "batch_id": "REPLACE_WITH_CAPTURE_BATCH_ID",
+  "observations": [
+    {
+      "id": "REPLACE_WITH_OBSERVATION_ID",
+      "name": null,
+      "classification": "B",
+      "vehicle": {"model": "R1S", "model_year": 2023, "owner_vehicle": true},
+      "observer": null,
+      "captured_at": null,
+      "method": null,
+      "instrument": null,
+      "quantity": "distance",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "uncertainty_basis": null,
+      "endpoint_from": null,
+      "endpoint_to": null,
+      "side": null,
+      "datum_id": null,
+      "calibration_id": null,
+      "configuration": {"front_seats": null, "second_row": null, "third_row": null, "doors": null, "hatch": null},
+      "evidence_paths": [],
+      "notes": "Blank form only. No physical measurement has been supplied."
+    }
+  ]
+}

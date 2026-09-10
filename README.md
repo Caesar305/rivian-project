@@ -14,6 +14,8 @@ The [interactive preview](outputs/r1s-working-preview.html) supports dimension c
 
 Read [the first capture request](outputs/START_HERE.md). It specifies twelve initial photographs and eight measurement groups to establish the next survey step.
 
+When captures arrive, use the [measurement intake instructions and blank form](data/measurements/README.md). The importer preserves raw observations in separate, immutable batches, reports missing metadata, and normalizes units without changing the online register or authorizing model geometry.
+
 The research package contains:
 
 - [Research findings and conflicts](outputs/research_findings.md)

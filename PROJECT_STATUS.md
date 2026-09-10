@@ -8,6 +8,7 @@ Updated: 2026-09-10. Phase: provisional online references and measurement acquis
 - Created the dimensional workbook, station survey, independent validation checks and initial capture instructions.
 - Built and reopened a Blender 4.5.7 scene with 17 collections, three driven loading-box dimensions and separate reference rulers. Verified source dimensions and driver propagation. The scene contains no inferred trim surfaces.
 - Built an interactive preview with 3D rotation, orthographic views, editable dimensions and carry-on translation. Online source values remain separate from local what-if values.
+- Implemented separate append-only measurement intake with a blank capture form, original source text and checksum, local evidence checksums, mm conversion, independent observation IDs, incomplete-data findings and explicit pending-review classification. Duplicate batch IDs cannot overwrite existing records; the importer cannot update model geometry.
 - Enabled the hourly “Continue Rivian digital twin” task. Continue useful work; pause when required owner input or geometry approval becomes the limiting dependency. This is a scheduled continuation, not an unbounded compute loop.
 
 ## Preview verification
@@ -23,13 +24,16 @@ Checked in the live Codex browser on 2026-09-10:
 
 These checks establish software behavior only. They do not validate vehicle fit. Source A applies to the reported loading-box measurements on the author's 2022 media vehicle; placement within the owner's vehicle remains class D.
 
+## Measurement intake verification
+
+Measurement intake is implemented in `scripts/import_measurements.py`; instructions and a blank form are under `data/measurements/`. Seven synthetic regression tests pass, covering signed/zero coordinates, independent sides, unit conversion, preservation of incomplete records, overwrite refusal, calibration/datum requirements, invalid values, unsafe paths and conversion overflow. The blank form was checked without saving a batch. No real observations have been imported. Datum/calibration IDs are captured for review, not yet registered or verified.
+
 ## Next concrete work
 
-1. Implement an append-only owner-measurement import path with source file references, independent left/right observations, endpoint definitions, vehicle/seat configuration, units, uncertainty and datum registration. Reject incomplete records from geometry use while retaining raw observations. Keep it separate from the initial-data generator so new captures cannot be erased by a rebuild.
-2. Add deliberate measurement-to-parameter mapping and a review report showing what can be updated, what conflicts, and what still lacks equivalent endpoints. No automatic promotion from an arbitrary measurement to a validated cabin dimension.
-3. Generate preview defaults from the same source mapping used by Blender so updates cannot silently diverge; add meaningful checks for mismatched source definitions and missing values.
-4. Continue only targeted research that can resolve a named geometry gap. Existing source coverage and rejected leads are in `outputs/research_findings.md`; do not repeatedly search for the same absent full cabin model.
-5. When owner captures arrive, register the vehicle datum, add B/C records, reconstruct and independently validate the base cabin. Executive seats and finished rendering remain later gated phases under the owner's brief.
+1. Add deliberate measurement-to-parameter mapping and a review report showing what can be updated, what conflicts, and what still lacks equivalent endpoints. No automatic promotion from an arbitrary measurement to a validated cabin dimension.
+2. Generate preview defaults from the same source mapping used by Blender so updates cannot silently diverge; add meaningful checks for mismatched source definitions and missing values.
+3. Continue only targeted research that can resolve a named geometry gap. Existing source coverage and rejected leads are in `outputs/research_findings.md`; do not repeatedly search for the same absent full cabin model.
+4. When owner captures arrive, register the vehicle datum, add B/C records, reconstruct and independently validate the base cabin. Executive seats and finished rendering remain later gated phases under the owner's brief.
 
 ## Missing inputs
 
