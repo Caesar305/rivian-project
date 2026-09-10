@@ -1,0 +1,115 @@
+<div id="r1s-working-preview">
+  <div class="viz-row">
+    <h3>R1S provisional geometry</h3>
+    <span class="text-small" data-role="classification">Published loading envelope · A / confidence 4</span>
+  </div>
+  <div class="viz-controls">
+    <label class="form-label">Length · mm <input class="form-control" data-axis="0" type="number" min="1" step="0.1" value="2057.4" aria-label="Envelope length in millimeters"></label>
+    <label class="form-label">Width · mm <input class="form-control" data-axis="1" type="number" min="1" step="0.1" value="1079.5" aria-label="Envelope width in millimeters"></label>
+    <label class="form-label">Height · mm <input class="form-control" data-axis="2" type="number" min="1" step="0.1" value="711.2" aria-label="Envelope height in millimeters"></label>
+    <label class="form-label">View <select class="form-select" data-role="view"><option value="orbit">3D · drag to rotate</option><option value="top">Top</option><option value="side">Passenger side</option><option value="rear">Rear</option></select></label>
+  </div>
+  <div class="viz-row">
+    <label class="form-check"><input class="form-check-input" data-role="luggage" type="checkbox" checked><span class="form-check-label">Carry-on reference · 22 × 14 × 9 in</span></label>
+    <button type="button" class="btn" data-role="restore">Restore published dimensions</button>
+  </div>
+  <svg data-role="scene" role="img" aria-label="Rotatable source-sized loading envelope and an illustrative carry-on block" style="display:block;width:100%;touch-action:none;user-select:none"></svg>
+  <div class="viz-controls">
+    <label class="form-label">Carry-on longitudinal center · <output data-role="position"></output><input class="form-range" data-role="travel" type="range" min="0" max="100" value="50" aria-label="Move carry-on through the reference box"></label>
+  </div>
+  <div class="text-small" aria-live="polite" data-role="result"></div>
+  <div class="text-small" data-role="inches"></div>
+  <div class="text-small">Reference box only · body datum, cabin surfaces and vehicle fit remain unverified.</div>
+  <details>
+    <summary>Source and comparison values</summary>
+    <div class="table-responsive"><table class="table table-sm">
+      <thead><tr><th>Reference</th><th>mm</th><th>in</th><th>Class</th></tr></thead>
+      <tbody>
+        <tr><td>Loading length · D056</td><td>2057.4</td><td>81.0</td><td>A</td></tr>
+        <tr><td>Loading width · D055</td><td>1079.5</td><td>42.5</td><td>A</td></tr>
+        <tr><td>Loading height · D057</td><td>711.2</td><td>28.0</td><td>A</td></tr>
+        <tr><td>Behind row 2 · D030</td><td>1315.0</td><td>51.77</td><td>D</td></tr>
+        <tr><td>Behind row 2 · D058</td><td>1465.58</td><td>57.70</td><td>D</td></tr>
+      </tbody>
+    </table></div>
+    <a href="https://www.thedrive.com/news/we-measured-the-2022-rivian-r1ss-cargo-storage-to-determine-its-usable-space" target="_blank" rel="noopener">Published loading-box measurements and methodology</a>
+  </details>
+  <style>
+    #r1s-working-preview [data-role="scene"] text {font-family:inherit;fill:var(--foreground)}
+    #r1s-working-preview [data-role="scene"] {cursor:grab}
+    #r1s-working-preview [data-role="scene"]:active {cursor:grabbing}
+    #r1s-working-preview details {margin-top:12px}
+    #r1s-working-preview output {font-variant-numeric:tabular-nums}
+  </style>
+  <script>
+  (() => {
+    const root=document.getElementById('r1s-working-preview');
+    if(!root || root.dataset.ready)return;
+    root.dataset.ready='true';
+    const q=s=>root.querySelector(s), svg=q('[data-role="scene"]');
+    const base=[2057.4,1079.5,711.2], bag=[558.8,355.6,228.6];
+    let dims=base.slice(), yaw=-0.7, pitch=0.65, mode='orbit', drag=null;
+    const ns='http://www.w3.org/2000/svg';
+    const edges=[[0,1],[0,2],[0,4],[1,3],[1,5],[2,3],[2,6],[3,7],[4,5],[4,6],[5,7],[6,7]];
+    function el(tag,attrs,text){const n=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs||{}))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;svg.appendChild(n);return n;}
+    function verts(d,c){const a=[];for(const x of [-.5,.5])for(const y of [-.5,.5])for(const z of [-.5,.5])a.push([c[0]+x*d[0],c[1]+y*d[1],c[2]+z*d[2]]);return a;}
+    function project(p){
+      const x=p[0]-dims[0]/2,y=p[1],z=p[2]-dims[2]/2;
+      if(mode==='top')return [x,-y,z];
+      if(mode==='side')return [x,-z,-y];
+      if(mode==='rear')return [-y,-z,-x];
+      const a=x*Math.cos(yaw)-y*Math.sin(yaw), b=x*Math.sin(yaw)+y*Math.cos(yaw);
+      return [a,b*Math.sin(pitch)-z*Math.cos(pitch),b*Math.cos(pitch)+z*Math.sin(pitch)];
+    }
+    function state(){
+      const cx=(Number(q('[data-role="travel"]').value)/100)*(dims[0]+bag[0])-bag[0]/2;
+      const margins=[cx-bag[0]/2,dims[0]-cx-bag[0]/2,(dims[1]-bag[1])/2,dims[2]-bag[2]];
+      const clearance=Math.min(...margins);
+      return {cx,clearance,inside:clearance>=-1e-7,changed:dims.some((v,i)=>Math.abs(v-base[i])>1e-6)};
+    }
+    function draw(){
+      const st=state(),w=Math.max(280,root.getBoundingClientRect().width),h=Math.min(440,Math.max(300,w*.55));
+      svg.setAttribute('viewBox',`0 0 ${w} ${h}`);svg.setAttribute('height',h);svg.replaceChildren();
+      el('title',{},'Source-sized cargo reference and true-size carry-on block');
+      el('desc',{},'This drawing shows a rectangular published loading reference, not reconstructed vehicle surfaces. Changing dimensions creates class D what-if overrides.');
+      const bv=verts(dims,[dims[0]/2,0,dims[2]/2]);
+      const lv=verts(bag,[st.cx,0,bag[2]/2]);
+      const show=q('[data-role="luggage"]').checked;
+      const all=[...bv,...(show?lv:[])].map(project);
+      const xmin=Math.min(...all.map(p=>p[0])),xmax=Math.max(...all.map(p=>p[0]));
+      const ymin=Math.min(...all.map(p=>p[1])),ymax=Math.max(...all.map(p=>p[1]));
+      const scale=Math.min((w-80)/Math.max(1,xmax-xmin),(h-100)/Math.max(1,ymax-ymin));
+      const p2=p=>{const t=project(p);return [(t[0]-(xmin+xmax)/2)*scale+w/2,(t[1]-(ymin+ymax)/2)*scale+h/2,t[2]];};
+      function poly(points,fill,opacity){el('polygon',{points:points.map(p=>p2(p).slice(0,2).join(',')).join(' '),fill,opacity,stroke:'none'});}
+      function segments(points,color,width=1.5){for(const[i,j]of edges){const a=p2(points[i]),b=p2(points[j]);el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:color,'stroke-width':width});}}
+      poly([bv[0],bv[2],bv[6],bv[4]],'var(--viz-series-1)',.09);
+      segments(bv,'var(--viz-series-1)',1.5);
+      if(show){
+        const color=st.inside?'var(--viz-series-2)':'var(--red)';
+        const faces=[[0,2,6,4],[1,5,7,3],[0,4,5,1],[2,3,7,6],[0,1,3,2],[4,6,7,5]];
+        faces.sort((a,b)=>a.reduce((s,i)=>s+project(lv[i])[2],0)-b.reduce((s,i)=>s+project(lv[i])[2],0));
+        for(const f of faces)poly(f.map(i=>lv[i]),color,.13);
+        segments(lv,color,1.5);
+      }
+      el('text',{x:16,y:24,class:'text-small'},mode==='orbit'?'Drag to rotate · orthographic projection':`${mode[0].toUpperCase()+mode.slice(1)} orthographic`);
+      el('text',{x:16,y:h-18,class:'text-small'},'+X front · +Y driver side · +Z up');
+      q('[data-role="classification"]').textContent=st.changed?'Local what-if dimensions · D / unverified':'Published loading envelope · A / confidence 4';
+      q('[data-role="position"]').textContent=`${st.cx.toFixed(1)} mm / ${(st.cx/25.4).toFixed(2)} in`;
+      q('[data-role="inches"]').textContent=`Envelope: ${dims.map(v=>v.toFixed(1)).join(' × ')} mm · ${dims.map(v=>(v/25.4).toFixed(2)).join(' × ')} in`;
+      q('[data-role="result"]').textContent=!show?'Luggage reference hidden.':st.inside?`Carry-on is inside the reference box. Smallest side/end/top margin: ${st.clearance.toFixed(1)} mm / ${(st.clearance/25.4).toFixed(2)} in.`:`Carry-on exceeds the reference box by ${(-st.clearance).toFixed(1)} mm / ${(-st.clearance/25.4).toFixed(2)} in.`;
+      root.dataset.inside=String(st.inside);root.dataset.sourceClass=st.changed?'D':'A';root.dataset.dimensions=JSON.stringify(dims);
+    }
+    for(const inp of root.querySelectorAll('[data-axis]'))inp.addEventListener('input',()=>{
+      const v=Number(inp.value);if(!Number.isFinite(v)||v<=0){inp.setCustomValidity('Enter a positive dimension.');inp.reportValidity();return;}
+      inp.setCustomValidity('');dims[Number(inp.dataset.axis)]=v;draw();
+    });
+    q('[data-role="restore"]').addEventListener('click',()=>{dims=base.slice();for(const inp of root.querySelectorAll('[data-axis]')){inp.value=dims[Number(inp.dataset.axis)];inp.setCustomValidity('');}draw();});
+    q('[data-role="view"]').addEventListener('change',e=>{mode=e.target.value;draw();});
+    q('[data-role="travel"]').addEventListener('input',draw);q('[data-role="luggage"]').addEventListener('change',draw);
+    svg.addEventListener('pointerdown',e=>{if(mode!=='orbit')return;drag=[e.clientX,e.clientY,yaw,pitch];svg.setPointerCapture(e.pointerId);});
+    svg.addEventListener('pointermove',e=>{if(!drag)return;yaw=drag[2]+(e.clientX-drag[0])*.009;pitch=Math.max(-1.5,Math.min(1.5,drag[3]+(e.clientY-drag[1])*.009));draw();});
+    svg.addEventListener('pointerup',()=>{drag=null;});svg.addEventListener('pointercancel',()=>{drag=null;});
+    new ResizeObserver(draw).observe(root);draw();
+  })();
+  </script>
+</div>
