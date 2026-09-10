@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "mode": "REVIEW_ONLY",
+  "geometry_authorized": false,
+  "summary": {
+    "READY_FOR_REVIEW": 0,
+    "BLOCKED": 0,
+    "CONFLICT": 0
+  },
+  "unmapped_parameters": [],
+  "mappings": [],
+  "conflicts": [],
+  "next_action": "Define capture-backed parameters and explicit mappings."
+}

@@ -9,6 +9,7 @@ Updated: 2026-09-10. Phase: provisional online references and measurement acquis
 - Built and reopened a Blender 4.5.7 scene with 17 collections, three driven loading-box dimensions and separate reference rulers. Verified source dimensions and driver propagation. The scene contains no inferred trim surfaces.
 - Built an interactive preview with 3D rotation, orthographic views, editable dimensions and carry-on translation. Online source values remain separate from local what-if values.
 - Implemented separate append-only measurement intake with a blank capture form, original source text and checksum, local evidence checksums, mm conversion, independent observation IDs, incomplete-data findings and explicit pending-review classification. Duplicate batch IDs cannot overwrite existing records; the importer cannot update model geometry.
+- Added read-only measurement-to-parameter proposal review. It rechecks capture/evidence integrity, matches endpoint definitions, independent sides, vehicle and seat/door/hatch configurations, and coordinate datum IDs. Conflicting repeat bounds are reported without averaging or selecting a preferred observation. No geometry or classification is accepted automatically.
 - Enabled the hourly “Continue Rivian digital twin” task. Continue useful work; pause when required owner input or geometry approval becomes the limiting dependency. This is a scheduled continuation, not an unbounded compute loop.
 
 ## Preview verification
@@ -30,10 +31,15 @@ Measurement intake is implemented in `scripts/import_measurements.py`; instructi
 
 ## Next concrete work
 
-1. Add deliberate measurement-to-parameter mapping and a review report showing what can be updated, what conflicts, and what still lacks equivalent endpoints. No automatic promotion from an arbitrary measurement to a validated cabin dimension.
-2. Generate preview defaults from the same source mapping used by Blender so updates cannot silently diverge; add meaningful checks for mismatched source definitions and missing values.
-3. Continue only targeted research that can resolve a named geometry gap. Existing source coverage and rejected leads are in `outputs/research_findings.md`; do not repeatedly search for the same absent full cabin model.
-4. When owner captures arrive, register the vehicle datum, add B/C records, reconstruct and independently validate the base cabin. Executive seats and finished rendering remain later gated phases under the owner's brief.
+1. Generate preview defaults from the same source mapping used by Blender so updates cannot silently diverge; add meaningful checks for mismatched source definitions and missing values.
+2. Continue only targeted research that can resolve a named geometry gap. Existing source coverage and rejected leads are in `outputs/research_findings.md`; do not repeatedly search for the same absent full cabin model.
+3. When owner captures arrive, define capture-backed parameter endpoints/configurations, use the intake and mapping review, register the vehicle datum, accept B/C records deliberately, and reconstruct and independently validate the base cabin. Executive seats and finished rendering remain later gated phases under the owner's brief.
+
+## Mapping review verification
+
+All 14 intake/mapping regression tests pass. Seven new mapping tests cover unchanged files during review, endpoint/side/configuration mismatches, coordinate-datum mismatches, conflicting and touching repeat bounds, changed evidence and source checksums, missing captures, unsafe references, duplicate proposals and unmapped parameters. Test measurements are synthetic and live only in temporary test directories.
+
+`outputs/measurement_mapping_review.json` was generated from the current empty mapping catalogue. It contains zero proposals, not a validation pass. No owner-cabin parameters or real observations have been invented to populate the report. The review supports future proposals but deliberately does not apply values to Blender; that step depends on reviewed real captures.
 
 ## Missing inputs
 

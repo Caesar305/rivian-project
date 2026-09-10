@@ -16,6 +16,8 @@ Read [the first capture request](outputs/START_HERE.md). It specifies twelve ini
 
 When captures arrive, use the [measurement intake instructions and blank form](data/measurements/README.md). The importer preserves raw observations in separate, immutable batches, reports missing metadata, and normalizes units without changing the online register or authorizing model geometry.
 
+The [measurement mapping review](data/measurements/MAPPING.md) checks explicit observation-to-parameter proposals against endpoint definitions, configurations and evidence. It reports incompatible captures and conflicting repeats without averaging or applying them. The [current report](outputs/measurement_mapping_review.json) contains no proposals because owner captures are still pending.
+
 The research package contains:
 
 - [Research findings and conflicts](outputs/research_findings.md)

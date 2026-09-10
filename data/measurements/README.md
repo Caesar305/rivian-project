@@ -17,3 +17,5 @@ Use `B` for direct physical measurements, `C` for calibrated photographic deriva
 Distances must be positive; signed x/y/z coordinates may be negative or zero. Units are `mm` or `in`. Uncertainty is a positive absolute bound in the same unit, with an explanation of how it was obtained. Missing uncertainty is an incomplete observation, not an assumed perfect measurement. Record exact endpoint features, instrument, observer, timestamp with timezone, and all seat/door/hatch configurations. Coordinate values need a datum ID; class C observations also need a calibration ID. Subsequent review must verify these references and the evidence itself before accepting geometry.
 
 The initial-data builder writes only the online register under `outputs/`; it does not touch this separate intake directory. Do not copy synthetic test fixtures into real capture batches.
+
+After import, use the [mapping review workflow](MAPPING.md) to propose which observation describes which owner-cabin parameter. This is a separate read-only review, not automatic acceptance or a model update.
