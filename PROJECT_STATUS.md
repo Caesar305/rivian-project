@@ -1,6 +1,6 @@
 # Project status
 
-Updated: 2026-09-10. Phase: provisional online references and measurement acquisition tooling. The target 2023 cabin is not yet reconstructed or validated.
+Updated: 2026-09-11 UTC. Phase: waiting for owner captures. The target 2023 cabin is not yet reconstructed or validated. Hourly continuation is PAUSED to avoid repeated research or tooling work without new evidence.
 
 ## Completed
 
@@ -11,7 +11,8 @@ Updated: 2026-09-10. Phase: provisional online references and measurement acquis
 - Implemented separate append-only measurement intake with a blank capture form, original source text and checksum, local evidence checksums, mm conversion, independent observation IDs, incomplete-data findings and explicit pending-review classification. Duplicate batch IDs cannot overwrite existing records; the importer cannot update model geometry.
 - Added read-only measurement-to-parameter proposal review. It rechecks capture/evidence integrity, matches endpoint definitions, independent sides, vehicle and seat/door/hatch configurations, and coordinate datum IDs. Conflicting repeat bounds are reported without averaging or selecting a preferred observation. No geometry or classification is accepted automatically.
 - Unified preview and Blender source resolution with unit, axis-role and measurement-definition checks. Regenerated the preview and Blender scene; both include the same source fingerprint. The preview defaults, source table and classification are generated from the register, while local what-if values remain D.
-- Enabled the hourly “Continue Rivian digital twin” task. Continue useful work; pause when required owner input or geometry approval becomes the limiting dependency. This is a scheduled continuation, not an unbounded compute loop.
+- Inspected the S14 live files page and confirmed its single STEP accessory listing. The browser download event did not expose a usable local file; units, dimensions and contents remain uninspected. The outcome is documented in `outputs/free_reference_assessment.md`. No external CAD geometry was imported.
+- The hourly “Continue Rivian digital twin” task was enabled for independent preparation, then paused on 2026-09-11 UTC when owner captures became the next useful dependency. The project is not complete.
 
 ## Preview verification
 
@@ -32,9 +33,9 @@ Measurement intake is implemented in `scripts/import_measurements.py`; instructi
 
 ## Next concrete work
 
-1. Inspect the still-unretrieved free sleeping-platform STEP lead from S005J: https://www.printables.com/fr/model/551407-rivian-r1s-sleeping-platform. Determine whether the actual files are available, their license and coordinate units, and whether any geometry offers useful accessory reference. Keep it separate from the cabin and do not treat product extents as trim or seat coordinates. Record the outcome once; do not repeatedly retry an inaccessible listing.
-2. Continue only targeted research that can resolve a named geometry gap. Existing source coverage and rejected leads are in `outputs/research_findings.md`; do not repeatedly search for the same absent full cabin model. If the remaining leads cannot add usable geometry, pause for owner captures instead of extending tooling indefinitely.
-3. When owner captures arrive, define capture-backed parameter endpoints/configurations, use the intake and mapping review, register the vehicle datum, accept B/C records deliberately, and reconstruct and independently validate the base cabin. Executive seats and finished rendering remain later gated phases under the owner's brief.
+1. Await four owner overview photos: hatch looking forward with row 3 upright, the same view with row 3 folded, and one view through each rear doorway showing the second-row floor and seat bases. Include a rigid ruler near a hard floor/rail feature where practical; keep front seats and row 2 in the same recorded positions. This focused request is issued once at the pause, rather than repeatedly asking for the full survey.
+2. On receipt, inspect the actual vehicle features, select repeatable datum candidates and mark the next exact measurement endpoints. Then use the intake/mapping workflow, register the datum and accept B/C records deliberately before reconstructing and independently validating the cabin. Executive seats and finished rendering remain later gated phases under the owner's brief.
+3. If a local copy of `R1S_Sleep_Platform_V1.stp` becomes available, inspect its units and assembly separately as an accessory reference. Do not schedule retries of the same listing or infer cabin surfaces from platform dimensions.
 
 ## Mapping review verification
 
@@ -55,6 +56,8 @@ No owner measurement records, photographs or scans have been supplied. The initi
 Unknown geometry includes structural datum, floor, closed-door trim, door openings, pillars, wheel houses, headliner, glass roof, seat bodies, seat attachments and hatch interior. Published passenger-room specifications and comfortable loading-box dimensions cannot locate these surfaces.
 
 Do not ask for the same capture package on every run. Complete the independent tasks above first; if no useful work remains without owner captures, make one focused input request and pause the hourly continuation.
+
+Pause action completed through the automation tool: `continue-rivian-digital-twin` status `PAUSED`. Resume useful work when owner evidence arrives; do not mark the cabin or overall project complete merely because preparation is finished.
 
 ## Reproducibility and preservation
 

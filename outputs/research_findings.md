@@ -57,6 +57,8 @@ Exact unit conversions above do not imply that the source was measured to hundre
 
 The JSON source registry records URLs, dates/scopes and access limitations. A catalog listing is not proof that its files can be retrieved or that their license permits every downstream use.
 
+S14 follow-up, 2026-09-11 UTC: the live files page was inspected and its single STEP listing confirmed. The browser emitted a download event, but no local file was exposed or located for CAD inspection. Units, extents and contents remain unknown. See [the reference assessment](free_reference_assessment.md); no cabin geometry was inferred from this accessory.
+
 ## Missing construction information
 
 The following remain unmeasured: structural datum and centerline ties; rail/attachment coordinates; independent left/right trim profiles through row 2 and row 3; floor steps and humps; sill and door-opening curves; pillar volumes; real front-seatback envelopes; third-row cushion/back/folding hinge geometry; wheel-house trim and underlying structure; roof/glass/headliner surfaces; closed hatch inner surface; cargo boundaries in each configuration.

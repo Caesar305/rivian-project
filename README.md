@@ -4,6 +4,8 @@ A measurement-led reconstruction for a six-passenger executive interior, using t
 
 **Current state:** provisional online-reference modeling and acquisition planning. A source-driven Blender loading-envelope model now exists. Cabin surfaces, executive seats, scans and fit results remain pending. No commercial vehicle model is used.
 
+The independent preparation work is ready for owner captures. The [free STEP follow-up](outputs/free_reference_assessment.md) confirmed the accessory listing but did not yield an inspectable local CAD file. Begin with the four overview photos described there; they will let us select precise measurement locations on your vehicle.
+
 The owner has authorized using online measurements now and readjusting after physical measurement. This supersedes the original blanket pause on all modeling. Online data can drive explicitly provisional references; physical cabin validation and the approval requirement for finished renders still apply.
 
 Open [the Blender reference scene](outputs/R1S_provisional_reference.blend) or inspect [the orthographic reference sheet](outputs/provisional_reference_views.svg). [Model notes](outputs/provisional_model_notes.md) explain exactly what the geometry represents and how to update it.
